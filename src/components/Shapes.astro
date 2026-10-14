@@ -1,0 +1,15 @@
+---
+// Decorative animated background accents. transform/opacity only; paused off-screen
+// (see .bg-paused) and disabled under prefers-reduced-motion.
+interface Props { variant?: 'hero' | 'section' }
+const { variant = 'section' } = Astro.props;
+---
+<div class="shapes pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true" data-bg-anim>
+  <span class="sh sh-blob sh-a"></span>
+  <span class="sh sh-blob sh-b"></span>
+  {variant === 'hero' && <span class="sh sh-blob sh-c"></span>}
+  <span class="sh sh-ring"></span>
+  <span class="sh sh-square"></span>
+  <span class="sh sh-tri"></span>
+  <span class="sh sh-dots"></span>
+</div>

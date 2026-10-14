@@ -3,11 +3,11 @@ import '../styles.css';
 import { ClientRouter } from 'astro:transitions';
 import { EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
 interface Props { title?: string; description?: string; noindex?: boolean; og?: string; ogAlt?: string }
-const { title, description = 'Collins (Collo) Milimo: software developer and clinical data manager in Kenya. Builder of VERDICT, an ethics review platform, and ShelfCast.', noindex = false, og = 'og-home', ogAlt = 'Collins Milimo, Software Developer & Data Manager' } = Astro.props;
+const { title, description = 'Collins Milimo (Collo) is a software developer and clinical data manager in Kenya: Data Coordinator at VIBRI and builder of VERDICT, an ethics review platform, and ShelfCast.', noindex = false, og = 'og-home', ogAlt = 'Collins Milimo, Software Developer & Data Manager' } = Astro.props;
 const ogUrl = `https://collymo.com/img/og/${og}.png`;
-const full = title ? `${title} | Collins Milimo` : 'Collins Milimo | Software Developer & Data Manager';
+const full = title ? `${title} | Collins Milimo` : 'Collins Milimo (Collo) | Software Developer & Data Manager';
 const canonical = new URL(Astro.url.pathname, 'https://collymo.com').href;
-const ld = { '@context': 'https://schema.org', '@type': 'Person', name: 'Collins Milimo', alternateName: 'Collo', jobTitle: 'Software Developer & Data Manager', url: 'https://collymo.com', image: 'https://collymo.com/img/og/og-home.png', email: `mailto:${EMAIL}`, sameAs: [GITHUB, LINKEDIN].filter(Boolean), alumniOf: 'University of Nairobi', worksFor: { '@type': 'Organization', name: 'Victoria Biomedical Research Institute (VIBRI)' } };
+const ld = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://collymo.com/#person', name: 'Collins Milimo', alternateName: 'Collo', givenName: 'Collins', familyName: 'Milimo', nationality: 'Kenyan', knowsAbout: ['Clinical data management', 'Good Clinical Practice', 'Research ethics', 'Software development', 'TypeScript', 'Python'], jobTitle: 'Software Developer & Data Manager', url: 'https://collymo.com', image: 'https://collymo.com/img/og/og-home.png', email: `mailto:${EMAIL}`, sameAs: [LINKEDIN, GITHUB], alumniOf: 'University of Nairobi', worksFor: { '@type': 'Organization', name: 'Victoria Biomedical Research Institute (VIBRI)' } };
 const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research'], ['About', '/#about'], ['Contact', '/#contact']];
 ---
 <!doctype html>
@@ -21,10 +21,14 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
   <meta property="og:type" content="profile" /><meta property="og:site_name" content="Collins Milimo" /><meta property="og:title" content={full} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} />
   <meta property="og:image" content={ogUrl} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content={ogAlt} />
   <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={full} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={ogUrl} /><meta name="twitter:image:alt" content={ogAlt} />
-  <link rel="icon" href="/favicon.ico" sizes="48x48" />
-  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-48.png" type="image/png" sizes="48x48" />
+  <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <meta name="author" content="Collins Milimo" />
   <meta name="theme-color" content="#0d0726" />
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   <script is:inline>
@@ -79,6 +83,16 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
       matchMedia('(min-width: 768px)').addEventListener('change', e => { if (e.matches) set(false); });
     }
     document.addEventListener('astro:page-load', initMenu);
+    // Pause decorative background animation while off-screen.
+    let bgIO: IntersectionObserver | null = null;
+    function initBgPause() {
+      bgIO?.disconnect();
+      const els = document.querySelectorAll<HTMLElement>('[data-bg-anim]');
+      if (!('IntersectionObserver' in window)) return;
+      bgIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('bg-paused', !e.isIntersecting)), { rootMargin: '100px' });
+      els.forEach(el => bgIO!.observe(el));
+    }
+    document.addEventListener('astro:page-load', initBgPause);
   </script>
 </body>
 </html>

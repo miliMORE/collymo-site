@@ -30,3 +30,22 @@
   .grid-bg, .blob { animation: none; }
   *, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Decorative background shapes ---------- */
+.shapes .sh { position: absolute; display: block; will-change: transform; }
+.sh-blob { border-radius: 9999px; opacity: .55; }
+.sh-a { width: 34rem; height: 34rem; top: -12rem; right: -10rem; background: radial-gradient(closest-side, rgba(124,58,237,.55), transparent); animation: floatA 22s ease-in-out infinite alternate; }
+.sh-b { width: 26rem; height: 26rem; bottom: -10rem; left: -8rem; background: radial-gradient(closest-side, rgba(34,211,238,.28), transparent); animation: floatB 26s ease-in-out infinite alternate; }
+.sh-c { width: 20rem; height: 20rem; top: 30%; left: 38%; background: radial-gradient(closest-side, rgba(244,114,208,.22), transparent); animation: floatA 30s ease-in-out infinite alternate-reverse; }
+.sh-ring { width: 9rem; height: 9rem; top: 14%; right: 8%; border-radius: 9999px; border: 1.5px solid rgba(34,211,238,.28); animation: spinSlow 40s linear infinite, bob 9s ease-in-out infinite alternate; }
+.sh-square { width: 2.25rem; height: 2.25rem; bottom: 18%; right: 32%; border: 1.5px solid rgba(255,122,107,.4); border-radius: .4rem; animation: spinSlow 28s linear infinite reverse; }
+.sh-tri { width: 0; height: 0; top: 22%; left: 6%; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 24px solid rgba(167,139,250,.35); animation: bob 7s ease-in-out infinite alternate; }
+.sh-dots { width: 8rem; height: 5rem; bottom: 10%; left: 42%; opacity: .5; background-image: radial-gradient(rgba(255,255,255,.35) 1.2px, transparent 1.6px); background-size: 16px 16px; animation: bob 11s ease-in-out infinite alternate-reverse; }
+@keyframes floatA { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-3rem,2.5rem,0) scale(1.08); } }
+@keyframes floatB { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(3rem,-2rem,0) scale(.94); } }
+@keyframes spinSlow { to { rotate: 360deg; } }
+@keyframes bob { from { transform: translate3d(0,0,0); } to { transform: translate3d(0,-14px,0); } }
+@media (max-width: 640px) { .sh-ring { width: 5rem; height: 5rem; } .sh-square, .sh-c { display: none; } }
+/* paused while off-screen */
+.bg-paused .sh, .bg-paused.sh, .bg-paused .blob, .bg-paused .grid-bg, .bg-paused.grid-bg { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .shapes .sh { animation: none !important; } }

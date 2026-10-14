@@ -1,5 +1,6 @@
 ---
 import Shot from './Shot.astro';
+import Shapes from './Shapes.astro';
 const tabs = [
   { id: 'software', label: 'Software', title: 'Software that research teams run on',
     body: 'I design and build full-stack web products, from data model to deployment, for people who need reliable, auditable tools.',
@@ -13,7 +14,7 @@ const tabs = [
 ];
 const flow = ['Collect', 'Validate', 'Query', 'Clean', 'Report'];
 ---
-<section id="what-i-do" class="section-glow scroll-mt-20 border-y border-white/5"><div class="wrap py-20">
+<section id="what-i-do" class="section-glow relative overflow-hidden scroll-mt-20 border-y border-white/5"><Shapes /><div class="wrap relative py-20">
   <p class="eyebrow reveal">What I do</p>
   <h2 class="h2 mt-2 reveal">Three disciplines, <span class="grad-text">one practice</span>.</h2>
   <div class="mt-10 reveal">

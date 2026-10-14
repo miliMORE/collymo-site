@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Shot from '../components/Shot.astro';
+import Shapes from '../components/Shapes.astro';
 import WhatIDo from '../components/WhatIDo.astro';
 import { PROJECTS, ROLES, EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
 const tabs = [['all','All'],['research','Research & ethics'],['saas','SaaS'],['client','Client work']];
@@ -21,8 +22,9 @@ const certs = [
 ];
 ---
 <Base>
-  <section class="hero-bg relative overflow-hidden text-white">
+  <section class="hero-bg relative overflow-hidden text-white" data-bg-anim>
     <div class="grid-bg absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <Shapes variant="hero" />
     <div class="wrap relative grid items-center gap-10 pt-16 sm:pt-20 lg:grid-cols-[1.35fr_1fr]" data-hero>
       <div class="pb-12 lg:pb-24">
         <p class="eyebrow !text-cy reveal">Collins (Collo) Milimo</p>
@@ -54,7 +56,7 @@ const certs = [
 
   <WhatIDo />
 
-  <section id="projects" class="scroll-mt-20 section-glow border-y border-white/5"><div class="wrap py-20">
+  <section id="projects" class="relative overflow-hidden scroll-mt-20 section-glow border-y border-white/5"><Shapes /><div class="wrap relative py-20">
     <p class="eyebrow reveal">Selected work</p>
     <h2 class="h2 mt-2 reveal">Selected <span class="grad-text">projects</span></h2>
     <div role="tablist" aria-label="Filter projects" class="mt-8 flex flex-wrap gap-2 reveal">
@@ -118,7 +120,7 @@ const certs = [
       <!-- TODO: add verification links (CITI completion-report "verify" URLs need Collo's certificate IDs; UoN short course has no public verifier). --><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
   </section>
 
-  <section id="contact" class="hero-bg scroll-mt-20 text-white"><div class="wrap py-20 text-center">
+  <section id="contact" class="hero-bg relative overflow-hidden scroll-mt-20 text-white"><Shapes /><div class="wrap relative py-20 text-center">
     <p class="eyebrow !text-cy reveal">Contact</p>
     <h2 class="mt-3 text-3xl sm:text-4xl font-bold reveal">Let's <span class="grad-text">work together</span>.</h2>
     <p class="mx-auto mt-4 max-w-xl text-slate-300 reveal">Clinical data management, research systems or a software project: I'd be glad to hear from you.</p>

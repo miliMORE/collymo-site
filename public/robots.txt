@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://collymo.com/sitemap-index.xml
+
+Sitemap: https://collymo.com/sitemap.xml

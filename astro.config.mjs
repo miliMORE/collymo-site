@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://collymo.com',
@@ -12,5 +11,5 @@ export default defineConfig({
   // This site has no forms, so it is simply off.
   security: { checkOrigin: false },
   adapter: node({ mode: 'middleware' }), // served by server.mjs (compression + cache headers)
-  integrations: [tailwind(), sitemap()],
+  integrations: [tailwind()], // sitemap.xml is src/pages/sitemap.xml.ts
 });
