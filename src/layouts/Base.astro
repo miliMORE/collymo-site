@@ -19,7 +19,11 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
   {noindex && <meta name="robots" content="noindex" />}
   <meta property="og:type" content="profile" /><meta property="og:title" content={full} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content="https://collymo.com/img/og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0d0726" />
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   <script is:inline>
     (function () { var h = document.documentElement; h.classList.remove('no-js');
@@ -34,7 +38,7 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-ink focus:p-3">Skip to content</a>
   <header class="fixed inset-x-0 top-0 z-40 bg-ink/70 backdrop-blur border-b border-white/10" transition:persist>
     <div class="wrap flex h-16 items-center justify-between text-white">
-      <a href="/" class="font-bold tracking-tight text-lg">collymo<span class="grad-text">.</span></a>
+      <a href="/" class="flex items-center gap-2.5 font-bold tracking-tight text-lg"><picture><source type="image/webp" srcset="/img/avatar-128.webp" /><img src="/img/avatar-64.png" width="30" height="30" alt="" class="h-[30px] w-[30px] rounded-full" /></picture><span>collymo<span class="grad-text">.</span></span></a>
       <nav aria-label="Main" class="flex items-center gap-4 sm:gap-7 text-sm">
         {nav.map(([l, h]) => <a href={h} class:list={['hover:text-cy', l !== 'Clinical research' && 'hidden sm:inline']}>{l}</a>)}
         <a href={CV_MAILTO} class="hidden md:inline-flex rounded-full border border-white/25 px-4 py-1.5 hover:bg-white/10">Request my CV</a>
