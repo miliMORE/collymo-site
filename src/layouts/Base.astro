@@ -21,16 +21,22 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
-  <script is:inline>document.documentElement.classList.remove('no-js');</script>
+  <script is:inline>
+    (function () { var h = document.documentElement; h.classList.remove('no-js');
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { h.classList.add('motion');
+        // Failsafe: if GSAP hasn't started within 2.5s, show everything.
+        setTimeout(function () { if (!h.dataset.motionReady) h.classList.remove('motion'); }, 2500); } })();
+    document.addEventListener('astro:after-swap', function () { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion'); });
+  </script>
   <ClientRouter fallback="swap" />
 </head>
-<body class="min-h-screen flex flex-col bg-slate-50 text-slate-700 antialiased">
+<body class="min-h-screen flex flex-col bg-paper text-slate-700 antialiased">
   <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3">Skip to content</a>
-  <header class="fixed inset-x-0 top-0 z-40 bg-ink/85 backdrop-blur border-b border-white/10" transition:persist>
+  <header class="fixed inset-x-0 top-0 z-40 bg-ink/80 backdrop-blur border-b border-white/10" transition:persist>
     <div class="wrap flex h-16 items-center justify-between text-white">
-      <a href="/" class="font-bold tracking-tight text-lg">collymo<span class="text-lime-brand">.</span></a>
+      <a href="/" class="font-bold tracking-tight text-lg">collymo<span class="grad-text">.</span></a>
       <nav aria-label="Main" class="flex items-center gap-4 sm:gap-7 text-sm">
-        {nav.map(([l, h]) => <a href={h} class:list={['hover:text-lime-brand', l !== 'Clinical research' && 'hidden sm:inline']}>{l}</a>)}
+        {nav.map(([l, h]) => <a href={h} class:list={['hover:text-cy', l !== 'Clinical research' && 'hidden sm:inline']}>{l}</a>)}
         <a href={CV_MAILTO} class="hidden md:inline-flex rounded-full border border-white/25 px-4 py-1.5 hover:bg-white/10">Request my CV</a>
       </nav>
     </div>
@@ -42,14 +48,6 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
       <p class="flex gap-5"><a class="hover:text-white" href={`mailto:${EMAIL}`}>Email</a><a class="hover:text-white" href={GITHUB} rel="me">GitHub</a>{LINKEDIN && <a class="hover:text-white" href={LINKEDIN} rel="me">LinkedIn</a>}<a class="hover:text-white" href="/clinical-research">Clinical research</a></p>
     </div>
   </footer>
-  <script>
-    function initReveal() {
-      const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
-      const io = new IntersectionObserver((entries) => entries.forEach(en => { if (en.isIntersecting) { (en.target as HTMLElement).classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
-      els.forEach(e => io.observe(e));
-    }
-    document.addEventListener('astro:page-load', initReveal);
-  </script>
+  <script>import '../scripts/motion';</script>
 </body>
 </html>

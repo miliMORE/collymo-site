@@ -4,45 +4,47 @@ import { ROLES, STUDY_GROUPS, CV_MAILTO } from '../data';
 const total = STUDY_GROUPS.reduce((n, g) => n + g.studies.length, 0);
 ---
 <Base title="Clinical research journey" description="Collins Milimo's clinical research journey: data and regulatory roles at VIBRI and Butere Clinical Research Centre, and 13 Phase 1–4 trials and validation studies.">
-  <section class="relative overflow-hidden bg-ink text-white">
+  <section class="hero-bg relative overflow-hidden text-white">
     <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
-    <div class="wrap relative py-20">
-      <p class="eyebrow !text-lime-brand reveal">Clinical research journey</p>
-      <h1 class="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl reveal">Five years of trial data, regulation and quality.</h1>
+    <div class="wrap relative py-20" data-hero>
+      <p class="eyebrow !text-cy reveal">Clinical research journey</p>
+      <h1 class="mt-3 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl" data-split>{"Five years of trial data,".split(" ").map(w => <><span class="w"><span>{w}</span></span>{" "}</>)}<span class="w"><span class="grad-text">regulation</span></span>{" "}<span class="w"><span>and</span></span>{" "}<span class="w"><span class="grad-text">quality.</span></span></h1>
       <p class="mt-5 max-w-2xl text-lg text-slate-300 reveal">From data clerk to Data Coordinator: data management and regulatory work on {total} clinical studies, Phase 1 to 4, at Butere Clinical Research Centre and Victoria Biomedical Research Institute.</p>
       <dl class="mt-10 grid max-w-2xl grid-cols-3 gap-4 reveal">
-        <div class="rounded-xl bg-white/5 p-4"><dt class="text-xs text-slate-400">Studies</dt><dd class="text-3xl font-bold">{total}</dd></div>
-        <div class="rounded-xl bg-white/5 p-4"><dt class="text-xs text-slate-400">Phases</dt><dd class="text-3xl font-bold">1–4</dd></div>
-        <div class="rounded-xl bg-white/5 p-4"><dt class="text-xs text-slate-400">Since</dt><dd class="text-3xl font-bold">2021</dd></div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-4"><dt class="text-xs text-slate-300">Studies</dt><dd class="text-3xl font-bold tabular-nums text-cy"><span data-count={total}>{total}</span></dd></div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-4"><dt class="text-xs text-slate-300">Phases</dt><dd class="text-3xl font-bold tabular-nums text-mg">1–<span data-count="4" data-from="1">4</span></dd></div>
+        <div class="rounded-xl border border-white/10 bg-white/5 p-4"><dt class="text-xs text-slate-300">Since</dt><dd class="text-3xl font-bold tabular-nums text-co"><span data-count="2021" data-from="2000">2021</span></dd></div>
       </dl>
     </div>
   </section>
 
   <section class="wrap py-20">
     <p class="eyebrow reveal">Timeline</p><h2 class="h2 mt-2 reveal">Roles</h2>
-    <ol class="relative mt-10 ml-3 space-y-10 border-l-2 border-slate-200">
+    <ol class="relative mt-10 ml-3 space-y-10" data-timeline>
+      <span class="absolute left-0 top-0 h-full w-0.5 bg-violet-100" aria-hidden="true"></span>
+      <span class="absolute left-0 top-0 h-full w-0.5 origin-top bg-gradient-to-b from-cy via-vio to-mg" aria-hidden="true" data-line></span>
       {ROLES.map((r, i) => (
         <li class="relative pl-8 reveal">
-          <span class:list={['absolute -left-[9px] top-1.5 h-4 w-4 rounded-full ring-4 ring-slate-50', i === 0 ? 'bg-lime-brand' : 'bg-sky-brand']}></span>
-          <p class="text-sm font-semibold text-sky-brand">{r.when}</p>
+          <span data-dot class:list={['absolute -left-[7px] top-1.5 h-4 w-4 rounded-full ring-4 ring-paper', i === 0 ? 'bg-cy' : 'bg-vio']}></span>
+          <p class="text-sm font-semibold text-vio">{r.when}</p>
           <h3 class="mt-1 text-xl font-semibold text-ink">{r.title}</h3>
           <p class="text-slate-500">{r.org}</p>
           <ul class="mt-3 list-disc space-y-1 pl-5">{r.points.map(p => <li>{p}</li>)}</ul>
         </li>
       ))}
-      <li class="relative pl-8 reveal"><span class="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full bg-slate-300 ring-4 ring-slate-50"></span><p class="text-sm font-semibold text-sky-brand">Jul 2021</p><h3 class="mt-1 text-xl font-semibold text-ink">Good Clinical Practice certification</h3><p class="text-slate-500">CITI Program</p></li>
+      <li class="relative pl-8 reveal"><span data-dot class="absolute -left-[7px] top-1.5 h-4 w-4 rounded-full bg-mg ring-4 ring-paper"></span><p class="text-sm font-semibold text-vio">Jul 2021</p><h3 class="mt-1 text-xl font-semibold text-ink">Good Clinical Practice certification</h3><p class="text-slate-500">CITI Program</p></li>
     </ol>
   </section>
 
-  <section class="bg-white border-y border-slate-200"><div class="wrap py-20">
+  <section class="bg-white border-y border-violet-100"><div class="wrap py-20">
     <p class="eyebrow reveal">Studies</p><h2 class="h2 mt-2 reveal">Studies by type and phase</h2>
     <p class="mt-3 max-w-2xl reveal">Data clerk and data manager on the studies below. They are summarised by therapeutic area and phase; protocol identifiers and sponsors are not shown.</p>
     <div class="mt-10 grid gap-8 lg:grid-cols-2">
       {STUDY_GROUPS.map(g => (
-        <div class="card reveal">
+        <div class="card reveal" data-tilt>
           <div class="flex items-center justify-between"><h3 class="text-lg font-semibold text-ink">{g.type}</h3><span class="chip">{g.studies.length} {g.studies.length === 1 ? 'study' : 'studies'}</span></div>
           <ul class="mt-5 divide-y divide-slate-100">
-            {g.studies.map(s => <li class="flex gap-4 py-3"><span class="w-28 shrink-0 text-xs font-semibold uppercase tracking-wide text-sky-brand pt-0.5">{s.phase}</span><span><span class="block font-medium text-ink">{s.title}</span><span class="text-sm text-slate-500">{s.who}</span></span></li>)}
+            {g.studies.map(s => <li class="flex gap-4 py-3"><span class="w-28 shrink-0 text-xs font-semibold uppercase tracking-wide text-vio pt-0.5">{s.phase}</span><span><span class="block font-medium text-ink">{s.title}</span><span class="text-sm text-slate-500">{s.who}</span></span></li>)}
           </ul>
         </div>
       ))}
