@@ -13,6 +13,7 @@ async function load() {
   const [{ gsap: g }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
   g.registerPlugin(ScrollTrigger);
   gsap = g; ST = ScrollTrigger;
+  (window as any).__gsap = g; // used by the What I do tabs for panel transitions
 }
 
 function animate() {

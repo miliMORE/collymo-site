@@ -11,6 +11,6 @@ export default defineConfig({
   // Astro's checkOrigin 403s same-origin POSTs behind Railway's proxy (seen on verdict-site).
   // This site has no forms, so it is simply off.
   security: { checkOrigin: false },
-  adapter: node({ mode: 'standalone' }),
+  adapter: node({ mode: 'middleware' }), // served by server.mjs (compression + cache headers)
   integrations: [tailwind(), sitemap()],
 });

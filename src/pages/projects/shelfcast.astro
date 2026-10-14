@@ -1,7 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Shot from '../../components/Shot.astro';
 ---
-<Base title="ShelfCast case study" description="ShelfCast turns ebooks you already own into private, downloadable audiobooks.">
+<Base og="og-shelfcast" ogAlt="ShelfCast case study by Collins Milimo" title="ShelfCast case study" description="ShelfCast turns ebooks you already own into private, downloadable audiobooks.">
   <section class="hero-bg text-white"><div class="wrap py-20">
     <a href="/#projects" class="text-sm text-slate-400 hover:text-white">← All projects</a>
     <p class="eyebrow !text-cy mt-6">Case study · SaaS</p>
@@ -21,6 +22,15 @@ import Base from '../../layouts/Base.astro';
           <li>Stripe Checkout and Customer Portal for subscriptions, and a health endpoint with a database ping.</li>
           <li>Runs with Docker Compose: web, worker, PostgreSQL and optional MinIO.</li>
         </ul>
+      </div>
+      <div class="reveal"><h2 class="h2 !text-2xl">Screenshots</h2>
+        <p class="mt-2 text-sm text-slate-300">Captured from ShelfCast running locally with no user data.</p>
+        <div class="mt-5 grid gap-5 sm:grid-cols-2">
+          <div class="sm:col-span-2"><Shot name="shelfcast-home" url="ShelfCast" alt="ShelfCast landing page" eager /></div>
+          <Shot name="shelfcast-pricing" url="ShelfCast /pricing" alt="ShelfCast pricing page with Free and Pro plans" sizes="(min-width:1024px) 380px, 92vw" />
+          <Shot name="shelfcast-signup" url="ShelfCast /signup" alt="ShelfCast sign-up form" sizes="(min-width:1024px) 380px, 92vw" />
+        </div>
+        <!-- TODO: library/conversion screenshots need a local Postgres with a fake public-domain book. -->
       </div>
     </div>
     <aside class="card h-fit reveal">

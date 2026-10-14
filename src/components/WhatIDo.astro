@@ -1,0 +1,81 @@
+---
+import Shot from './Shot.astro';
+const tabs = [
+  { id: 'software', label: 'Software', title: 'Software that research teams run on',
+    body: 'I design and build full-stack web products, from data model to deployment, for people who need reliable, auditable tools.',
+    points: ['VERDICT: an ethics review platform in use by a research ethics committee', 'ShelfCast: a private audiobook SaaS with a background worker queue', 'TypeScript, Next.js, Astro, Prisma, PostgreSQL, Python and Django, deployed on Railway'] },
+  { id: 'data', label: 'Data management', title: 'Clean, defensible clinical data',
+    body: 'Day to day I keep trial data complete and accurate, from form design to the final report.',
+    points: ['Data collection QC, data entry oversight and query resolution', 'CRF and study-specific source-document design', 'Cleaning, standardisation and statistical reports in STATA, SQL and Excel'] },
+  { id: 'clinical', label: 'Clinical research', title: 'Five years inside clinical trials',
+    body: 'Data and regulatory roles across Phase 1 to 4 trials and validation studies, under Good Clinical Practice.',
+    points: ['13 studies: vaccines, sickle cell disease, HPV and diagnostics', 'Regulatory submissions and ethics committee liaison', 'Audit preparation, document control and records management'] },
+];
+const flow = ['Collect', 'Validate', 'Query', 'Clean', 'Report'];
+---
+<section id="what-i-do" class="section-glow scroll-mt-20 border-y border-white/5"><div class="wrap py-20">
+  <p class="eyebrow reveal">What I do</p>
+  <h2 class="h2 mt-2 reveal">Three disciplines, <span class="grad-text">one practice</span>.</h2>
+  <div class="mt-10 reveal">
+    <div role="tablist" aria-label="What I do" class="relative flex gap-1 overflow-x-auto border-b border-white/10" id="wid-tabs">
+      {tabs.map((t, i) => <button role="tab" id={`wid-tab-${t.id}`} aria-controls={`wid-panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="wid-tab whitespace-nowrap px-4 py-3 text-sm font-semibold text-slate-300 transition-colors hover:text-white aria-selected:text-white sm:px-6 sm:text-base">{t.label}</button>)}
+      <span id="wid-ind" class="absolute bottom-[-1px] left-0 h-0.5 w-0 rounded-full" style="background-image:linear-gradient(90deg,#22d3ee,#a78bfa,#f472d0,#ff7a6b)" aria-hidden="true"></span>
+    </div>
+    {tabs.map((t, i) => (
+      <div role="tabpanel" id={`wid-panel-${t.id}`} aria-labelledby={`wid-tab-${t.id}`} tabindex="0" hidden={i !== 0} class="wid-panel mt-10 grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <h3 class="wid-in text-2xl font-bold text-white sm:text-3xl">{t.title}</h3>
+          <p class="wid-in mt-3 text-lg">{t.body}</p>
+          <ul class="mt-6 space-y-3">{t.points.map(pt => <li class="wid-in flex gap-3"><span class="mt-1 text-cy" aria-hidden="true">✓</span><span>{pt}</span></li>)}</ul>
+          {t.id === 'clinical' && <a href="/clinical-research" class="wid-in btn-line mt-7">See the clinical research journey →</a>}
+          {t.id === 'software' && <a href="/projects/verdict" class="wid-in btn-line mt-7">Read the VERDICT case study →</a>}
+        </div>
+        <div class="wid-in">
+          {t.id === 'software' && <Shot name="verdict-product" url="verdictethics.com/product" alt="VERDICT product page listing its modules" sizes="(min-width:1024px) 540px, 92vw" />}
+          {t.id === 'data' && (
+            <div class="card">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cy">Data lifecycle</p>
+              <ol class="mt-5 grid grid-cols-5 gap-2 text-center text-xs sm:text-sm">{flow.map((f, k) => <li class="wid-in rounded-xl border border-white/10 bg-white/[0.05] px-1 py-4"><span class="block text-lg font-bold grad-text">{k + 1}</span>{f}</li>)}</ol>
+              <div class="mt-6 grid grid-cols-3 gap-3 text-center text-sm">{['STATA','SQL','Excel'].map(x => <span class="chip justify-self-center">{x}</span>)}</div>
+            </div>)}
+          {t.id === 'clinical' && (
+            <div class="grid grid-cols-3 gap-3">
+              {[['13','studies','text-cy'],['1–4','phases','text-mg'],['GCP','certified 2021','text-co']].map(([n, l, c]) => <div class="wid-in card text-center"><p class:list={['text-3xl font-bold', c]}>{n}</p><p class="mt-1 text-sm">{l}</p></div>)}
+            </div>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</div></section>
+<script>
+  function initWid() {
+    const list = document.getElementById('wid-tabs'); if (!list) return;
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>('.wid-tab')];
+    const ind = document.getElementById('wid-ind')!;
+    const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const place = (t: HTMLElement, animate: boolean) => {
+      const g = (window as any).__gsap; const x = t.offsetLeft, w = t.offsetWidth;
+      if (animate && g && !reduced()) g.to(ind, { x, width: w, duration: 0.45, ease: 'power3.out' }); else { ind.style.transform = `translateX(${x}px)`; ind.style.width = `${w}px`; }
+    };
+    const select = (t: HTMLButtonElement, focus = false) => {
+      if (t.getAttribute('aria-selected') === 'true') return;
+      tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on; });
+      if (focus) t.focus();
+      place(t, true);
+      const g = (window as any).__gsap; const panel = document.getElementById(t.getAttribute('aria-controls')!)!;
+      if (g && !reduced()) g.fromTo(panel.querySelectorAll('.wid-in'), { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out', stagger: 0.05, overwrite: true });
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', e => {
+        const k = e.key; let n = -1;
+        if (k === 'ArrowRight') n = (i + 1) % tabs.length; else if (k === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length; else if (k === 'Home') n = 0; else if (k === 'End') n = tabs.length - 1;
+        if (n >= 0) { e.preventDefault(); select(tabs[n], true); }
+      });
+    });
+    const sel = tabs.find(t => t.getAttribute('aria-selected') === 'true')!;
+    requestAnimationFrame(() => place(sel, false));
+    window.addEventListener('resize', () => place(tabs.find(t => t.getAttribute('aria-selected') === 'true')!, false));
+  }
+  document.addEventListener('astro:page-load', initWid);
+</script>

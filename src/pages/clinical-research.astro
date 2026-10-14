@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { ROLES, STUDY_GROUPS, CV_MAILTO } from '../data';
 const total = STUDY_GROUPS.reduce((n, g) => n + g.studies.length, 0);
 ---
-<Base title="Clinical research journey" description="Collins Milimo's clinical research journey: data and regulatory roles at VIBRI and Butere Clinical Research Centre, and 13 Phase 1–4 trials and validation studies.">
+<Base og="og-clinical" ogAlt="Clinical research journey of Collins Milimo" title="Clinical research journey" description="Collins Milimo's clinical research journey: data and regulatory roles at VIBRI and Butere Clinical Research Centre, and 13 Phase 1–4 trials and validation studies.">
   <section class="hero-bg relative overflow-hidden text-white">
     <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
     <div class="wrap relative py-20" data-hero>

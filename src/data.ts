@@ -1,8 +1,7 @@
 export const EMAIL = 'collinsmilimo47@gmail.com';
 export const CV_MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent('CV request via collymo.com')}&body=${encodeURIComponent('Hi Collins,\n\nCould you please share your CV?\n\nName:\nOrganisation:\n')}`;
 export const GITHUB = 'https://github.com/miliMORE';
-// TODO: add LinkedIn profile URL once Collo confirms it (profile could not be fetched).
-export const LINKEDIN = '';
+export const LINKEDIN = 'https://www.linkedin.com/in/collins-milimo-90a136284/';
 
 export const ROLES = [
   { when: 'Feb 2025 – present', title: 'Data Coordinator', org: 'Victoria Biomedical Research Institute (VIBRI)',
@@ -39,8 +38,8 @@ export const STUDY_GROUPS = [
 ];
 
 export const PROJECTS = [
-  { slug: 'verdict', name: 'VERDICT', tag: 'Research & ethics', tags: ['research','saas'], blurb: 'A platform for ethics and scientific review committees: submissions, reviews, meetings, decisions and verifiable letters.', stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Railway'], href: '/projects/verdict' },
-  { slug: 'shelfcast', name: 'ShelfCast', tag: 'SaaS', tags: ['saas'], blurb: 'Turns ebooks you already own into private, downloadable audiobooks with text-to-speech.', stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Docker'], href: '/projects/shelfcast' },
+  { slug: 'verdict', name: 'VERDICT', tag: 'Research & ethics', tags: ['research','saas'], blurb: 'A platform for ethics and scientific review committees: submissions, reviews, meetings, decisions and verifiable letters.', outcome: 'In use by the VIBRI Ethics and Scientific Review Committee', shot: { name: 'verdict-home', url: 'verdictethics.com', alt: 'The VERDICT marketing site home page' }, stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Railway'], href: '/projects/verdict' },
+  { slug: 'shelfcast', name: 'ShelfCast', tag: 'SaaS', tags: ['saas'], blurb: 'Turns ebooks you already own into private, downloadable audiobooks with text-to-speech.', shot: { name: 'shelfcast-home', url: 'ShelfCast (local demo)', alt: 'The ShelfCast landing page' }, stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Docker'], href: '/projects/shelfcast' },
   { slug: 'salary-survey', name: 'Public-service salary survey platform', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: county public-service salary and remuneration surveys with questionnaires, catalogues, document workflows, reports and workbook exports.', stack: ['Python','Django','openpyxl'] },
   { slug: 'fee-ledger', name: 'School fee & M-Pesa ledger', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: student fee structures, payments, a ledger, bank and M-Pesa import batches, expenses and budgets, with role-based staff access.', stack: ['Python','Django'] },
 ];

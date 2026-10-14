@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import Shot from '../components/Shot.astro';
+import WhatIDo from '../components/WhatIDo.astro';
 import { PROJECTS, ROLES, EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
 const tabs = [['all','All'],['research','Research & ethics'],['saas','SaaS'],['client','Client work']];
 const skills = [
@@ -33,8 +35,9 @@ const certs = [
       <div class="relative mx-auto w-[260px] sm:w-[300px] lg:w-[330px] self-end lg:justify-self-center">
         <div class="absolute inset-x-6 top-10 bottom-0" aria-hidden="true" data-blob><div class="blob"></div></div>
         <picture>
-          <source type="image/webp" srcset="/img/collo-cutout-420.webp 420w, /img/collo-cutout-840.webp 840w" sizes="(min-width:1024px) 330px, (min-width:640px) 300px, 260px" />
-          <img src="/img/collo-cutout-420.png" width="420" height="418" fetchpriority="high" alt="Portrait of Collins Milimo in a white shirt and grey tie" class="relative block h-auto w-full drop-shadow-[0_20px_40px_rgba(13,7,38,.55)]" data-parallax transition:name="portrait" />
+          <source type="image/avif" srcset="/img/collo-cutout-330.avif 330w, /img/collo-cutout-660.avif 660w" sizes="(min-width:1024px) 330px, (min-width:640px) 300px, 260px" />
+          <source type="image/webp" srcset="/img/collo-cutout-330.webp 330w, /img/collo-cutout-660.webp 660w" sizes="(min-width:1024px) 330px, (min-width:640px) 300px, 260px" />
+          <img src="/img/collo-cutout-330.png" width="330" height="329" decoding="async" fetchpriority="high" alt="Portrait of Collins Milimo in a white shirt and grey tie" class="relative block h-auto w-full drop-shadow-[0_20px_40px_rgba(13,7,38,.55)]" data-parallax transition:name="portrait" />
         </picture>
       </div>
     </div>
@@ -49,6 +52,8 @@ const certs = [
     </div>
   </section>
 
+  <WhatIDo />
+
   <section id="projects" class="scroll-mt-20 section-glow border-y border-white/5"><div class="wrap py-20">
     <p class="eyebrow reveal">Selected work</p>
     <h2 class="h2 mt-2 reveal">Selected <span class="grad-text">projects</span></h2>
@@ -60,8 +65,11 @@ const certs = [
         <article data-tags={p.tags.join(' ')} class="pcard card group relative flex flex-col overflow-hidden transition-[opacity,box-shadow] duration-300 hover:shadow-[0_20px_50px_-18px_rgba(34,211,238,.35)] will-change-transform" data-tilt>
           <span class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(34,211,238,.12), transparent 60%)" aria-hidden="true"></span>
           <div class="relative flex items-center justify-between"><span class="chip !bg-cy/10 !text-cy">{p.tag}</span>{!p.href && <span class="text-xs text-slate-300">Client name withheld</span>}</div>
-          <h3 class="mt-4 text-xl font-semibold text-white" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
-          <p class="mt-2 flex-1">{p.blurb}</p>
+          {p.shot ? <div class="relative mt-4"><Shot name={p.shot.name} url={p.shot.url} alt={p.shot.alt} sizes="(min-width:768px) 520px, 90vw" /></div>
+            : <div class="relative mt-4 grid aspect-[16/9] place-items-center rounded-xl border border-dashed border-white/15 bg-gradient-to-br from-ink-700/60 to-ink-800 text-sm text-slate-300" aria-hidden="true">Client work: screenshots withheld</div>}
+          <h3 class="relative mt-5 text-xl font-semibold text-white" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
+          <p class="relative mt-2 flex-1">{p.blurb}</p>
+          {p.outcome && <p class="relative mt-3 text-sm font-medium text-cy">✓ {p.outcome}</p>}
           <ul class="mt-4 flex flex-wrap gap-2">{p.stack.map(s => <li class="chip">{s}</li>)}</ul>
           {p.href && <a href={p.href} class="mt-5 font-semibold text-cy hover:underline">Read the case study →</a>}
         </article>
@@ -106,7 +114,8 @@ const certs = [
 
   <section class="wrap py-20 grid gap-10 lg:grid-cols-2">
     <div><p class="eyebrow reveal">Education</p><ul class="mt-6 space-y-4">{edu.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
-    <div><p class="eyebrow reveal">Certifications &amp; courses</p><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
+    <div><p class="eyebrow reveal">Certifications &amp; courses</p>
+      <!-- TODO: add verification links (CITI completion-report "verify" URLs need Collo's certificate IDs; UoN short course has no public verifier). --><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
   </section>
 
   <section id="contact" class="hero-bg scroll-mt-20 text-white"><div class="wrap py-20 text-center">
