@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="VERDICT case study" description="VERDICT: a platform for ethics and scientific review committees, built by Collins Milimo.">
+  <section class="bg-ink text-white"><div class="wrap py-20">
+    <a href="/#projects" class="text-sm text-slate-400 hover:text-white">← All projects</a>
+    <p class="eyebrow !text-lime-brand mt-6">Case study · Research &amp; ethics</p>
+    <h1 class="mt-3 text-4xl font-bold sm:text-6xl" transition:name="title-verdict">VERDICT</h1>
+    <p class="mt-5 max-w-2xl text-lg text-slate-300">A platform that takes ethics and scientific review committees from submission to signed approval letter, with every step recorded.</p>
+    <a href="https://verdictethics.com" class="btn-primary mt-8">Visit verdictethics.com</a>
+  </div></section>
+  <section class="wrap py-16 grid gap-10 lg:grid-cols-3">
+    <div class="lg:col-span-2 space-y-10">
+      <div class="reveal"><h2 class="h2 !text-2xl">The problem</h2><p class="mt-3">Research ethics committees juggle submissions, reviewer opinions, meetings, queries, letters and fees across email and spreadsheets. Working on the data and regulatory side of clinical trials, I saw how hard it is for applicants, reviewers and secretariats to know where a study stands.</p></div>
+      <div class="reveal"><h2 class="h2 !text-2xl">What I built</h2>
+        <ul class="mt-4 space-y-3 list-disc pl-5">
+          <li><strong>Applicants</strong> register, add institution and site details, submit study packages, see fee notices when billing is on, and download the signed approval letter once it is issued.</li>
+          <li><strong>Reviewers</strong> submit opinions (Satisfactory, Requires clarification, Not satisfactory) with comment rules from a catalog. Each opinion stays hidden from other reviewers until they submit their own, and reviews lock once a decision or letter is issued.</li>
+          <li><strong>The secretariat</strong> works from a query-letter workspace showing "X of Y responded", alongside package documents and applicant management.</li>
+          <li>Meetings, messages, notifications, invoices, a metrics dashboard, resources and help, plus password reset and email verification.</li>
+          <li>Committee name, letterhead and reference prefixes are configurable, so the platform works for any institution. Each committee runs on its own deployment and database.</li>
+        </ul>
+      </div>
+      <div class="reveal"><h2 class="h2 !text-2xl">The marketing site</h2><p class="mt-3">I also built verdictethics.com, the product's marketing site, with Astro and Tailwind: product, security and pricing pages, a demo-request form with spam protection, and a server-side www-to-apex redirect.</p></div>
+      <div class="reveal"><h2 class="h2 !text-2xl">Outcome</h2><p class="mt-3">VERDICT is in use by the VIBRI Ethics and Scientific Review Committee.</p></div>
+      <!-- TODO: add product screenshots from a demo tenant with fake data -->
+    </div>
+    <aside class="card h-fit reveal">
+      <h2 class="font-semibold text-ink">My role</h2><p class="mt-1 text-sm">Product, design and full-stack development</p>
+      <h2 class="mt-5 font-semibold text-ink">Stack</h2>
+      <ul class="mt-2 flex flex-wrap gap-2">{['Next.js','TypeScript','Prisma','PostgreSQL','Railway','Astro','Tailwind'].map(s => <li class="chip">{s}</li>)}</ul>
+      <p class="mt-5 text-xs text-slate-500">The source code is private.</p>
+    </aside>
+  </section>
+</Base>

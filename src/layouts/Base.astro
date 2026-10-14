@@ -1,0 +1,55 @@
+---
+import '../styles.css';
+import { ClientRouter } from 'astro:transitions';
+import { EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
+interface Props { title?: string; description?: string; noindex?: boolean }
+const { title, description = 'Collins (Collo) Milimo: software developer and clinical data manager in Kenya. Builder of VERDICT, an ethics review platform, and ShelfCast.', noindex = false } = Astro.props;
+const full = title ? `${title} | Collins Milimo` : 'Collins Milimo | Software Developer & Data Manager';
+const canonical = new URL(Astro.url.pathname, 'https://collymo.com').href;
+const ld = { '@context': 'https://schema.org', '@type': 'Person', name: 'Collins Milimo', alternateName: 'Collo', jobTitle: 'Software Developer & Data Manager', url: 'https://collymo.com', image: 'https://collymo.com/img/collo-800.jpg', email: `mailto:${EMAIL}`, sameAs: [GITHUB, LINKEDIN].filter(Boolean), alumniOf: 'University of Nairobi', worksFor: { '@type': 'Organization', name: 'Victoria Biomedical Research Institute (VIBRI)' } };
+const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research'], ['About', '/#about'], ['Contact', '/#contact']];
+---
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{full}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <meta property="og:type" content="profile" /><meta property="og:title" content={full} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content="https://collymo.com/img/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <script is:inline>document.documentElement.classList.remove('no-js');</script>
+  <ClientRouter fallback="swap" />
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-700 antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3">Skip to content</a>
+  <header class="fixed inset-x-0 top-0 z-40 bg-ink/85 backdrop-blur border-b border-white/10" transition:persist>
+    <div class="wrap flex h-16 items-center justify-between text-white">
+      <a href="/" class="font-bold tracking-tight text-lg">collymo<span class="text-lime-brand">.</span></a>
+      <nav aria-label="Main" class="flex items-center gap-4 sm:gap-7 text-sm">
+        {nav.map(([l, h]) => <a href={h} class:list={['hover:text-lime-brand', l !== 'Clinical research' && 'hidden sm:inline']}>{l}</a>)}
+        <a href={CV_MAILTO} class="hidden md:inline-flex rounded-full border border-white/25 px-4 py-1.5 hover:bg-white/10">Request my CV</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="flex-1 pt-16"><slot /></main>
+  <footer class="bg-ink text-slate-400 text-sm">
+    <div class="wrap py-10 flex flex-col sm:flex-row gap-4 justify-between">
+      <p>© {new Date().getFullYear()} Collins Milimo</p>
+      <p class="flex gap-5"><a class="hover:text-white" href={`mailto:${EMAIL}`}>Email</a><a class="hover:text-white" href={GITHUB} rel="me">GitHub</a>{LINKEDIN && <a class="hover:text-white" href={LINKEDIN} rel="me">LinkedIn</a>}<a class="hover:text-white" href="/clinical-research">Clinical research</a></p>
+    </div>
+  </footer>
+  <script>
+    function initReveal() {
+      const els = document.querySelectorAll<HTMLElement>('.reveal:not(.in)');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+      const io = new IntersectionObserver((entries) => entries.forEach(en => { if (en.isIntersecting) { (en.target as HTMLElement).classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
+      els.forEach(e => io.observe(e));
+    }
+    document.addEventListener('astro:page-load', initReveal);
+  </script>
+</body>
+</html>

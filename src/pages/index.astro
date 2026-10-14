@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import { PROJECTS, ROLES, EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
+const tabs = [['all','All'],['research','Research & ethics'],['saas','SaaS'],['client','Client work']];
+const skills = [
+  ['Clinical data management', ['Quality control','Query resolution','CRF & source-document design','Data cleaning & standardisation','Database backups','Visit schedules']],
+  ['Regulatory & ethics', ['Good Clinical Practice','Regulatory submissions','Ethics committee liaison','Audit preparation','Records management','Document control']],
+  ['Analysis', ['STATA','SQL','Statistics','Advanced Excel']],
+  ['Software', ['TypeScript','Next.js','Astro','Prisma','PostgreSQL','Python','Django','Google Apps Script','Docker','Railway']],
+];
+const edu = [
+  ['BSc Mathematics','University of Nairobi','Sep 2021'],
+  ['Mobile Software Development & Entrepreneurship Program (MIT)','eMobilis Mobile Technology Institute','May 2017'],
+];
+const certs = [
+  ['Good Clinical Practice (GCP)','CITI Program','Jul 2021'],
+  ['Biomedical Responsible Conduct of Research','CITI Program','Feb 2025'],
+  ['Modern Records Management (short course)','University of Nairobi, Dept. of Library & Information Science','Oct 2022'],
+];
+---
+<Base>
+  <section class="relative overflow-hidden bg-ink text-white">
+    <div class="grid-bg absolute inset-0" aria-hidden="true"></div>
+    <div class="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-sky-brand/30 blur-3xl" aria-hidden="true"></div>
+    <div class="wrap relative grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.4fr_1fr]">
+      <div>
+        <p class="eyebrow !text-lime-brand reveal">Collins (Collo) Milimo</p>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-6xl reveal">Software Developer <span class="text-lime-brand">&amp;</span> Data Manager</h1>
+        <p class="mt-6 max-w-xl text-lg text-slate-300 reveal">Clinical data coordinator who builds the software research teams run on. Data Coordinator at Victoria Biomedical Research Institute (VIBRI), Kenya.</p>
+        <div class="mt-9 flex flex-wrap gap-3 reveal"><a href="#projects" class="btn-primary">View projects</a><a href="/clinical-research" class="btn-line">Clinical research journey</a><a href={CV_MAILTO} class="btn-line">Request my CV</a></div>
+      </div>
+      <div class="reveal justify-self-center">
+        <picture>
+          <source type="image/webp" srcset="/img/collo-400.webp 400w, /img/collo-800.webp 800w" sizes="(min-width:1024px) 360px, 280px" />
+          <img src="/img/collo-800.jpg" srcset="/img/collo-400.jpg 400w, /img/collo-800.jpg 800w" sizes="(min-width:1024px) 360px, 280px" width="360" height="360" fetchpriority="high" alt="Portrait of Collins Milimo in a white shirt and grey tie" class="h-72 w-72 lg:h-[360px] lg:w-[360px] rounded-[2rem] object-cover ring-4 ring-white/10 shadow-2xl" transition:name="portrait" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap scroll-mt-20 py-20 grid gap-10 lg:grid-cols-[1fr_2fr]">
+    <div class="reveal"><p class="eyebrow">About</p><h2 class="h2 mt-2">Data, regulation and code.</h2></div>
+    <div class="space-y-4 text-lg leading-relaxed reveal">
+      <p>I'm Collins (Collo) Milimo, a clinical data specialist and software developer in Kenya. Since 2021 I've managed data and regulatory work on clinical trials, first at Butere Clinical Research Centre and now as Data Coordinator at Victoria Biomedical Research Institute (VIBRI).</p>
+      <p>My work covers data quality control, query resolution, statistical reporting, source-document design and ethics committee submissions, all under Good Clinical Practice. I hold a BSc in Mathematics from the University of Nairobi and trained in mobile software development at eMobilis.</p>
+      <p>I also build software, including VERDICT, a platform for ethics review committees, and ShelfCast, a private audiobook app.</p>
+    </div>
+  </section>
+
+  <section id="projects" class="scroll-mt-20 bg-white border-y border-slate-200"><div class="wrap py-20">
+    <p class="eyebrow reveal">Selected work</p>
+    <h2 class="h2 mt-2 reveal">Projects</h2>
+    <div role="tablist" aria-label="Filter projects" class="mt-8 flex flex-wrap gap-2 reveal">
+      {tabs.map(([k, l], i) => <button role="tab" data-filter={k} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="ptab rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold transition-colors aria-selected:border-ink aria-selected:bg-ink aria-selected:text-white">{l}</button>)}
+    </div>
+    <div id="project-grid" class="mt-8 grid gap-6 md:grid-cols-2" aria-live="polite">
+      {PROJECTS.map(p => (
+        <article data-tags={p.tags.join(' ')} class="pcard card flex flex-col transition-[opacity,transform] duration-300">
+          <div class="flex items-center justify-between"><span class="chip !bg-sky-brand/10 !text-sky-brand">{p.tag}</span>{!p.href && <span class="text-xs text-slate-500">Client name withheld</span>}</div>
+          <h3 class="mt-4 text-xl font-semibold text-ink" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
+          <p class="mt-2 flex-1">{p.blurb}</p>
+          <ul class="mt-4 flex flex-wrap gap-2">{p.stack.map(s => <li class="chip">{s}</li>)}</ul>
+          {p.href && <a href={p.href} class="mt-5 font-semibold text-sky-brand hover:underline">Read the case study →</a>}
+        </article>
+      ))}
+    </div>
+  </div></section>
+  <script>
+    function initTabs() {
+      const tabs = [...document.querySelectorAll<HTMLButtonElement>('.ptab')];
+      const cards = [...document.querySelectorAll<HTMLElement>('.pcard')];
+      if (!tabs.length) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const select = (t: HTMLButtonElement) => {
+        const f = t.dataset.filter!;
+        tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1; });
+        cards.forEach(c => {
+          const show = f === 'all' || c.dataset.tags!.split(' ').includes(f);
+          if (reduce) { c.hidden = !show; return; }
+          if (show) { c.hidden = false; c.style.opacity = '0'; c.style.transform = 'translateY(12px)'; requestAnimationFrame(() => { c.style.opacity = ''; c.style.transform = ''; }); }
+          else c.hidden = true;
+        });
+      };
+      tabs.forEach((t, i) => {
+        t.addEventListener('click', () => select(t));
+        t.addEventListener('keydown', e => { const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); } });
+      });
+    }
+    document.addEventListener('astro:page-load', initTabs);
+  </script>
+
+  <section class="wrap py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="eyebrow reveal">Experience</p><h2 class="h2 mt-2 reveal">Where I've worked</h2></div><a href="/clinical-research" class="font-semibold text-sky-brand hover:underline reveal">Full clinical research journey →</a></div>
+    <ol class="mt-10 grid gap-6 md:grid-cols-3">
+      {ROLES.map(r => <li class="card reveal"><p class="text-sm font-semibold text-sky-brand">{r.when}</p><h3 class="mt-2 text-lg font-semibold text-ink">{r.title}</h3><p class="text-sm text-slate-500">{r.org}</p><p class="mt-3 text-sm">{r.points[0]}.</p></li>)}
+    </ol>
+  </section>
+
+  <section class="bg-white border-y border-slate-200"><div class="wrap py-20">
+    <p class="eyebrow reveal">Skills</p><h2 class="h2 mt-2 reveal">What I bring</h2>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">{skills.map(([g, list]) => <div class="card reveal"><h3 class="font-semibold text-ink">{g}</h3><ul class="mt-4 flex flex-wrap gap-2">{(list as string[]).map(s => <li class="chip">{s}</li>)}</ul></div>)}</div>
+  </div></section>
+
+  <section class="wrap py-20 grid gap-10 lg:grid-cols-2">
+    <div><p class="eyebrow reveal">Education</p><ul class="mt-6 space-y-4">{edu.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-ink">{t}</p><p class="text-sm text-slate-500">{o} · {d}</p></li>)}</ul></div>
+    <div><p class="eyebrow reveal">Certifications &amp; courses</p><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-ink">{t}</p><p class="text-sm text-slate-500">{o} · {d}</p></li>)}</ul></div>
+  </section>
+
+  <section id="contact" class="scroll-mt-20 bg-ink text-white"><div class="wrap py-20 text-center">
+    <p class="eyebrow !text-lime-brand reveal">Contact</p>
+    <h2 class="mt-3 text-3xl sm:text-4xl font-bold reveal">Let's work together.</h2>
+    <p class="mx-auto mt-4 max-w-xl text-slate-300 reveal">Clinical data management, research systems or a software project: I'd be glad to hear from you.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3 reveal">
+      <a href={`mailto:${EMAIL}`} class="btn-primary">{EMAIL}</a>
+      <a href={CV_MAILTO} class="btn-line">Request my CV</a>
+      <a href={GITHUB} class="btn-line" rel="me">GitHub</a>
+      {LINKEDIN && <a href={LINKEDIN} class="btn-line" rel="me">LinkedIn</a>}
+    </div>
+  </div></section>
+</Base>
