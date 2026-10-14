@@ -41,7 +41,7 @@ const certs = [
   </section>
 
   <section id="about" data-section class="wrap scroll-mt-20 py-20 grid gap-10 lg:grid-cols-[1fr_2fr]">
-    <div class="reveal"><p class="eyebrow">About</p><h2 class="h2 mt-2">Data, regulation and code.</h2></div>
+    <div class="reveal"><p class="eyebrow">About</p><h2 class="h2 mt-2">Data, regulation <span class="grad-text">and code</span>.</h2></div>
     <div class="space-y-4 text-lg leading-relaxed reveal">
       <p>I'm Collins (Collo) Milimo, a clinical data specialist and software developer in Kenya. Since 2021 I've managed data and regulatory work on clinical trials, first at Butere Clinical Research Centre and now as Data Coordinator at Victoria Biomedical Research Institute (VIBRI).</p>
       <p>My work covers data quality control, query resolution, statistical reporting, source-document design and ethics committee submissions, all under Good Clinical Practice. I hold a BSc in Mathematics from the University of Nairobi and trained in mobile software development at eMobilis.</p>
@@ -49,21 +49,21 @@ const certs = [
     </div>
   </section>
 
-  <section id="projects" class="scroll-mt-20 bg-white border-y border-violet-100"><div class="wrap py-20">
+  <section id="projects" class="scroll-mt-20 section-glow border-y border-white/5"><div class="wrap py-20">
     <p class="eyebrow reveal">Selected work</p>
-    <h2 class="h2 mt-2 reveal">Projects</h2>
+    <h2 class="h2 mt-2 reveal">Selected <span class="grad-text">projects</span></h2>
     <div role="tablist" aria-label="Filter projects" class="mt-8 flex flex-wrap gap-2 reveal">
-      {tabs.map(([k, l], i) => <button role="tab" data-filter={k} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="ptab rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold transition-colors aria-selected:border-ink aria-selected:bg-ink aria-selected:text-white">{l}</button>)}
+      {tabs.map(([k, l], i) => <button role="tab" data-filter={k} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="ptab rounded-full border border-white/20 text-slate-200 px-4 py-2 text-sm font-semibold transition-colors aria-selected:border-cy aria-selected:bg-cy aria-selected:text-ink">{l}</button>)}
     </div>
     <div id="project-grid" class="mt-8 grid gap-6 md:grid-cols-2" aria-live="polite">
       {PROJECTS.map(p => (
-        <article data-tags={p.tags.join(' ')} class="pcard card group relative flex flex-col overflow-hidden transition-[opacity,box-shadow] duration-300 hover:shadow-[0_20px_40px_-16px_rgba(91,33,182,.35)] will-change-transform" data-tilt>
+        <article data-tags={p.tags.join(' ')} class="pcard card group relative flex flex-col overflow-hidden transition-[opacity,box-shadow] duration-300 hover:shadow-[0_20px_50px_-18px_rgba(34,211,238,.35)] will-change-transform" data-tilt>
           <span class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(34,211,238,.12), transparent 60%)" aria-hidden="true"></span>
-          <div class="relative flex items-center justify-between"><span class="chip !bg-vio/10 !text-vio">{p.tag}</span>{!p.href && <span class="text-xs text-slate-500">Client name withheld</span>}</div>
-          <h3 class="mt-4 text-xl font-semibold text-ink" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
+          <div class="relative flex items-center justify-between"><span class="chip !bg-cy/10 !text-cy">{p.tag}</span>{!p.href && <span class="text-xs text-slate-300">Client name withheld</span>}</div>
+          <h3 class="mt-4 text-xl font-semibold text-white" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
           <p class="mt-2 flex-1">{p.blurb}</p>
           <ul class="mt-4 flex flex-wrap gap-2">{p.stack.map(s => <li class="chip">{s}</li>)}</ul>
-          {p.href && <a href={p.href} class="mt-5 font-semibold text-vio hover:underline">Read the case study →</a>}
+          {p.href && <a href={p.href} class="mt-5 font-semibold text-cy hover:underline">Read the case study →</a>}
         </article>
       ))}
     </div>
@@ -93,20 +93,20 @@ const certs = [
   </script>
 
   <section class="wrap py-20">
-    <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="eyebrow reveal">Experience</p><h2 class="h2 mt-2 reveal">Where I've worked</h2></div><a href="/clinical-research" class="font-semibold text-vio hover:underline reveal">Full clinical research journey →</a></div>
+    <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="eyebrow reveal">Experience</p><h2 class="h2 mt-2 reveal">Where I've <span class="grad-text">worked</span></h2></div><a href="/clinical-research" class="font-semibold text-cy hover:underline reveal">Full clinical research journey →</a></div>
     <ol class="mt-10 grid gap-6 md:grid-cols-3">
-      {ROLES.map(r => <li class="card reveal"><p class="text-sm font-semibold text-vio">{r.when}</p><h3 class="mt-2 text-lg font-semibold text-ink">{r.title}</h3><p class="text-sm text-slate-500">{r.org}</p><p class="mt-3 text-sm">{r.points[0]}.</p></li>)}
+      {ROLES.map(r => <li class="card reveal"><p class="text-sm font-semibold text-cy">{r.when}</p><h3 class="mt-2 text-lg font-semibold text-white">{r.title}</h3><p class="text-sm text-slate-300">{r.org}</p><p class="mt-3 text-sm">{r.points[0]}.</p></li>)}
     </ol>
   </section>
 
-  <section class="bg-white border-y border-violet-100"><div class="wrap py-20">
-    <p class="eyebrow reveal">Skills</p><h2 class="h2 mt-2 reveal">What I bring</h2>
-    <div class="mt-10 grid gap-6 sm:grid-cols-2">{skills.map(([g, list]) => <div class="card reveal"><h3 class="font-semibold text-ink">{g}</h3><ul class="mt-4 flex flex-wrap gap-2">{(list as string[]).map(s => <li class="chip">{s}</li>)}</ul></div>)}</div>
+  <section class="section-glow border-y border-white/5"><div class="wrap py-20">
+    <p class="eyebrow reveal">Skills</p><h2 class="h2 mt-2 reveal">What I <span class="grad-text">bring</span></h2>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">{skills.map(([g, list]) => <div class="card reveal"><h3 class="font-semibold text-white">{g}</h3><ul class="mt-4 flex flex-wrap gap-2">{(list as string[]).map(s => <li class="chip">{s}</li>)}</ul></div>)}</div>
   </div></section>
 
   <section class="wrap py-20 grid gap-10 lg:grid-cols-2">
-    <div><p class="eyebrow reveal">Education</p><ul class="mt-6 space-y-4">{edu.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-ink">{t}</p><p class="text-sm text-slate-500">{o} · {d}</p></li>)}</ul></div>
-    <div><p class="eyebrow reveal">Certifications &amp; courses</p><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-ink">{t}</p><p class="text-sm text-slate-500">{o} · {d}</p></li>)}</ul></div>
+    <div><p class="eyebrow reveal">Education</p><ul class="mt-6 space-y-4">{edu.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
+    <div><p class="eyebrow reveal">Certifications &amp; courses</p><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
   </section>
 
   <section id="contact" class="hero-bg scroll-mt-20 text-white"><div class="wrap py-20 text-center">

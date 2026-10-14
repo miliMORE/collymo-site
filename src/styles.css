@@ -5,12 +5,13 @@
   .btn { @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-semibold transition-colors; }
   .btn-primary { @apply btn bg-gradient-to-r from-cy to-[#67e8f9] text-ink shadow-lg shadow-cy/20 hover:shadow-cy/40; }
   .btn-line { @apply btn border border-white/25 text-white hover:bg-white/10; }
-  .btn-dark { @apply btn bg-gradient-to-r from-vio to-[#7c3aed] text-white shadow-lg shadow-vio/30 hover:brightness-110; }
-  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-vio; }
-  .h2 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-ink; }
-  .card { @apply rounded-2xl border border-violet-100 bg-white p-6 shadow-[0_1px_2px_rgba(13,7,38,.04),0_8px_24px_-12px_rgba(91,33,182,.18)]; }
-  .chip { @apply inline-block rounded-full bg-vio-soft px-3 py-1 text-xs font-medium text-ink-800; }
-  .grad-text { @apply bg-gradient-to-r from-cy via-mg to-co bg-clip-text text-transparent; }
+  .btn-dark { @apply btn-primary; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-cy; }
+  .h2 { @apply text-3xl sm:text-4xl font-bold tracking-tight text-white; }
+  .card { @apply rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm shadow-[0_10px_30px_-15px_rgba(124,58,237,.45)]; }
+  .chip { @apply inline-block rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-medium text-slate-200; }
+  .grad-text { background-image: linear-gradient(90deg, #22d3ee 0%, #a78bfa 38%, #f472d0 68%, #ff7a6b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .section-glow { background: radial-gradient(50% 70% at 100% 0%, rgba(124,58,237,.22), transparent 60%), radial-gradient(40% 60% at 0% 100%, rgba(244,114,208,.10), transparent 60%), #120a33; }
   .hero-bg { background: radial-gradient(60% 80% at 85% 10%, rgba(124,58,237,.45), transparent 60%), radial-gradient(50% 60% at 0% 100%, rgba(244,114,208,.22), transparent 60%), linear-gradient(160deg, #0d0726 0%, #1a1050 60%, #12093a 100%); }
 }
 /* Content is visible by default. Only when motion is allowed and JS runs (html.motion) is it hidden for GSAP to reveal. */

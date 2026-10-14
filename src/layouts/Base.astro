@@ -30,9 +30,9 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
   </script>
   <ClientRouter fallback="swap" />
 </head>
-<body class="min-h-screen flex flex-col bg-paper text-slate-700 antialiased">
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3">Skip to content</a>
-  <header class="fixed inset-x-0 top-0 z-40 bg-ink/80 backdrop-blur border-b border-white/10" transition:persist>
+<body class="min-h-screen flex flex-col bg-ink text-slate-300 antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-ink focus:p-3">Skip to content</a>
+  <header class="fixed inset-x-0 top-0 z-40 bg-ink/70 backdrop-blur border-b border-white/10" transition:persist>
     <div class="wrap flex h-16 items-center justify-between text-white">
       <a href="/" class="font-bold tracking-tight text-lg">collymo<span class="grad-text">.</span></a>
       <nav aria-label="Main" class="flex items-center gap-4 sm:gap-7 text-sm">
@@ -42,7 +42,7 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
     </div>
   </header>
   <main id="main" class="flex-1 pt-16"><slot /></main>
-  <footer class="bg-ink text-slate-400 text-sm">
+  <footer class="border-t border-white/10 bg-ink text-slate-400 text-sm">
     <div class="wrap py-10 flex flex-col sm:flex-row gap-4 justify-between">
       <p>© {new Date().getFullYear()} Collins Milimo</p>
       <p class="flex gap-5"><a class="hover:text-white" href={`mailto:${EMAIL}`}>Email</a><a class="hover:text-white" href={GITHUB} rel="me">GitHub</a>{LINKEDIN && <a class="hover:text-white" href={LINKEDIN} rel="me">LinkedIn</a>}<a class="hover:text-white" href="/clinical-research">Clinical research</a></p>
