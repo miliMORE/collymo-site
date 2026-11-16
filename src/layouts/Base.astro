@@ -3,7 +3,7 @@ import '../styles.css';
 import { ClientRouter } from 'astro:transitions';
 import { EMAIL, GITHUB, LINKEDIN } from '../data';
 interface Props { title?: string; description?: string; noindex?: boolean; og?: string; ogAlt?: string }
-const { title, description = 'Collins Milimo (Collo) is a software developer and clinical data manager in Kenya. He builds software with Internet Congress Limited, including VERDICT, an ethics review platform, and ShelfCast.', noindex = false, og = 'og-home', ogAlt = 'Collins Milimo, Software Developer & Data Manager' } = Astro.props;
+const { title, description = 'Collins Milimo (Collo) is a software developer and clinical data manager in Kenya. He is a Developer at Internet Congress Limited, where he built VERDICT, an ethics review platform. ShelfCast is his own project.', noindex = false, og = 'og-home', ogAlt = 'Collins Milimo, Software Developer & Data Manager' } = Astro.props;
 const ogUrl = `https://collymo.com/img/og/${og}.png`;
 const full = title ? `${title} | Collins Milimo` : 'Collins Milimo (Collo) | Software Developer & Data Manager';
 const canonical = new URL(Astro.url.pathname, 'https://collymo.com').href;

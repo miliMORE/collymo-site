@@ -27,7 +27,7 @@ const flow = ['Collect', 'Validate', 'Query', 'Clean', 'Report'];
         <div>
           <h3 class="wid-in text-2xl font-bold text-white sm:text-3xl">{t.title}</h3>
           <p class="wid-in mt-3 text-lg">{t.body}</p>
-          {t.id === 'software' && <p class="wid-in mt-3">I build software with <a href="https://internetcongress.org" target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">Internet Congress Limited</a>, a tech company in Kisumu, Kenya.</p>}
+          {t.id === 'software' && <p class="wid-in mt-3">I'm a Developer at <a href="https://internetcongress.org" target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">Internet Congress Limited</a>, a tech company in Kisumu, Kenya.</p>}
           <ul class="mt-6 space-y-3">{t.points.map(pt => <li class="wid-in flex gap-3"><span class="mt-1 text-cy" aria-hidden="true">✓</span><span>{pt}</span></li>)}</ul>
           {t.id === 'clinical' && <a href="/clinical-research" class="wid-in btn-line mt-7">See the clinical research journey →</a>}
           {t.id === 'software' && <a href="https://verdictethics.com" target="_blank" rel="noopener" class="wid-in btn-line mt-7">Visit verdictethics.com →</a>}
