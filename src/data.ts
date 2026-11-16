@@ -37,8 +37,23 @@ export const STUDY_GROUPS = [
   ] },
 ];
 
-export const PROJECTS = [
-  { slug: 'verdict', name: 'VERDICT', tag: 'Research & ethics', tags: ['research','saas'], blurb: 'A platform for ethics and scientific review committees: submissions, reviews, meetings, decisions and verifiable letters.', outcome: 'In use by the VIBRI Ethics and Scientific Review Committee', shot: { name: 'verdict-home', url: 'verdictethics.com', alt: 'The VERDICT marketing site home page' }, stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Railway'], href: '/projects/verdict' },
+export type Project = {
+  slug: string;
+  name: string;
+  tag: string;
+  tags: string[];
+  blurb: string;
+  stack: string[];
+  outcome?: string;
+  /** In-app case study. */
+  href?: string;
+  /** Public marketing page. Shown as a small "Visit site" link. */
+  site?: { href: string; label: string };
+  shot?: { name: string; url: string; alt: string };
+};
+
+export const PROJECTS: Project[] = [
+  { slug: 'verdict', name: 'VERDICT', tag: 'Internet Congress', tags: ['client'], blurb: 'Built at Internet Congress: a platform for research ethics and scientific review committees covering submissions, reviews, meetings, decisions and verifiable approval letters.', shot: { name: 'verdict-home', url: 'verdictethics.com', alt: 'The VERDICT marketing site home page' }, stack: ['Next.js','TypeScript','Prisma','PostgreSQL'], site: { href: 'https://verdictethics.com', label: 'verdictethics.com' } },
   { slug: 'shelfcast', name: 'ShelfCast', tag: 'SaaS', tags: ['saas'], blurb: 'Turns ebooks you already own into private, downloadable audiobooks with text-to-speech.', shot: { name: 'shelfcast-home', url: 'ShelfCast (local demo)', alt: 'The ShelfCast landing page' }, stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Docker'], href: '/projects/shelfcast' },
   { slug: 'salary-survey', name: 'Public-service salary survey platform', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: county public-service salary and remuneration surveys with questionnaires, catalogues, document workflows, reports and workbook exports.', stack: ['Python','Django','openpyxl'] },
   { slug: 'fee-ledger', name: 'School fee & M-Pesa ledger', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: student fee structures, payments, a ledger, bank and M-Pesa import batches, expenses and budgets, with role-based staff access.', stack: ['Python','Django'] },

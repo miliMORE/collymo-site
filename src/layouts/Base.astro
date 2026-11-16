@@ -3,11 +3,11 @@ import '../styles.css';
 import { ClientRouter } from 'astro:transitions';
 import { EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
 interface Props { title?: string; description?: string; noindex?: boolean; og?: string; ogAlt?: string }
-const { title, description = 'Collins Milimo (Collo) is a software developer and clinical data manager in Kenya: Data Coordinator at VIBRI and builder of VERDICT, an ethics review platform, and ShelfCast.', noindex = false, og = 'og-home', ogAlt = 'Collins Milimo, Software Developer & Data Manager' } = Astro.props;
+const { title, description = 'Collins Milimo (Collo) is a software developer and clinical data manager in Kenya. He builds software with Internet Congress Limited, including VERDICT, an ethics review platform, and ShelfCast.', noindex = false, og = 'og-home', ogAlt = 'Collins Milimo, Software Developer & Data Manager' } = Astro.props;
 const ogUrl = `https://collymo.com/img/og/${og}.png`;
 const full = title ? `${title} | Collins Milimo` : 'Collins Milimo (Collo) | Software Developer & Data Manager';
 const canonical = new URL(Astro.url.pathname, 'https://collymo.com').href;
-const ld = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://collymo.com/#person', name: 'Collins Milimo', alternateName: 'Collo', givenName: 'Collins', familyName: 'Milimo', nationality: 'Kenyan', knowsAbout: ['Clinical data management', 'Good Clinical Practice', 'Research ethics', 'Software development', 'TypeScript', 'Python'], jobTitle: 'Software Developer & Data Manager', url: 'https://collymo.com', image: 'https://collymo.com/img/og/og-home.png', email: `mailto:${EMAIL}`, sameAs: [LINKEDIN, GITHUB], alumniOf: 'University of Nairobi', worksFor: { '@type': 'Organization', name: 'Victoria Biomedical Research Institute (VIBRI)' } };
+const ld = { '@context': 'https://schema.org', '@type': 'Person', '@id': 'https://collymo.com/#person', name: 'Collins Milimo', alternateName: 'Collo', givenName: 'Collins', familyName: 'Milimo', nationality: 'Kenyan', knowsAbout: ['Clinical data management', 'Good Clinical Practice', 'Research ethics', 'Software development', 'TypeScript', 'Python'], jobTitle: 'Software Developer & Data Manager', url: 'https://collymo.com', image: 'https://collymo.com/img/og/og-home.png', email: `mailto:${EMAIL}`, sameAs: [LINKEDIN, GITHUB], alumniOf: 'University of Nairobi', worksFor: [{ '@type': 'Organization', name: 'Victoria Biomedical Research Institute (VIBRI)' }, { '@type': 'Organization', name: 'Internet Congress Limited', url: 'https://internetcongress.org' }] };
 const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research'], ['About', '/#about'], ['Contact', '/#contact']];
 ---
 <!doctype html>
@@ -65,7 +65,7 @@ const nav = [['Work', '/#projects'], ['Clinical research', '/clinical-research']
   <footer class="border-t border-white/10 bg-ink text-slate-400 text-sm">
     <div class="wrap py-10 flex flex-col sm:flex-row gap-4 justify-between">
       <p>© {new Date().getFullYear()} Collins Milimo</p>
-      <p class="flex gap-5"><a class="hover:text-white" href={`mailto:${EMAIL}`}>Email</a><a class="hover:text-white" href={GITHUB} rel="me">GitHub</a>{LINKEDIN && <a class="hover:text-white" href={LINKEDIN} rel="me">LinkedIn</a>}<a class="hover:text-white" href="/clinical-research">Clinical research</a></p>
+      <p class="flex flex-wrap gap-x-5 gap-y-2"><a class="hover:text-white" href={`mailto:${EMAIL}`}>Email</a><a class="hover:text-white" href={GITHUB} rel="me">GitHub</a>{LINKEDIN && <a class="hover:text-white" href={LINKEDIN} rel="me">LinkedIn</a>}<a class="hover:text-white" href="https://internetcongress.org" target="_blank" rel="noopener">Internet Congress</a><a class="hover:text-white" href="/clinical-research">Clinical research</a></p>
     </div>
   </footer>
   <script>

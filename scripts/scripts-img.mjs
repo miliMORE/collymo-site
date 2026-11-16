@@ -1,6 +1,6 @@
 import sharp from 'sharp';
 const src = '/workspace/shots-src';
-const items = ['verdict-home','verdict-product','verdict-security','verdict-login','shelfcast-home','shelfcast-pricing','shelfcast-signup'];
+const items = ['verdict-home','shelfcast-home','shelfcast-pricing','shelfcast-signup'];
 for (const n of items) {
   const base = sharp(`${src}/${n}.png`).extract({ left: 0, top: 0, width: 1440, height: 810 });
   const buf = await base.toBuffer();

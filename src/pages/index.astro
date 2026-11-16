@@ -4,7 +4,7 @@ import Shot from '../components/Shot.astro';
 import Shapes from '../components/Shapes.astro';
 import WhatIDo from '../components/WhatIDo.astro';
 import { PROJECTS, ROLES, EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
-const tabs = [['all','All'],['research','Research & ethics'],['saas','SaaS'],['client','Client work']];
+const tabs = [['all','All'],['saas','SaaS'],['client','Client work']];
 const skills = [
   ['Clinical data management', ['Quality control','Query resolution','CRF & source-document design','Data cleaning & standardisation','Database backups','Visit schedules']],
   ['Regulatory & ethics', ['Good Clinical Practice','Regulatory submissions','Ethics committee liaison','Audit preparation','Records management','Document control']],
@@ -50,7 +50,7 @@ const certs = [
     <div class="space-y-4 text-lg leading-relaxed reveal">
       <p>I'm Collins (Collo) Milimo, a clinical data specialist and software developer in Kenya. Since 2021 I've managed data and regulatory work on clinical trials, first at Butere Clinical Research Centre and now as Data Coordinator at Victoria Biomedical Research Institute (VIBRI).</p>
       <p>My work covers data quality control, query resolution, statistical reporting, source-document design and ethics committee submissions, all under Good Clinical Practice. I hold a BSc in Mathematics from the University of Nairobi and trained in mobile software development at eMobilis.</p>
-      <p>I also build software, including VERDICT, a platform for ethics review committees, and ShelfCast, a private audiobook app.</p>
+      <p>I also build software with <a href="https://internetcongress.org" target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">Internet Congress Limited</a>, a tech company in Kisumu, Kenya. That work includes VERDICT, a platform for research ethics and scientific review committees, and ShelfCast, a private audiobook app.</p>
     </div>
   </section>
 
@@ -59,6 +59,7 @@ const certs = [
   <section id="projects" class="relative overflow-hidden scroll-mt-20 section-glow border-y border-white/5"><Shapes /><div class="wrap relative py-20">
     <p class="eyebrow reveal">Selected work</p>
     <h2 class="h2 mt-2 reveal">Selected <span class="grad-text">projects</span></h2>
+    <p class="mt-4 max-w-2xl text-lg reveal">I build software with <a href="https://internetcongress.org" target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">Internet Congress Limited</a>, a tech company in Kisumu, Kenya.</p>
     <div role="tablist" aria-label="Filter projects" class="mt-8 flex flex-wrap gap-2 reveal">
       {tabs.map(([k, l], i) => <button role="tab" data-filter={k} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="ptab rounded-full border border-white/20 text-slate-200 px-4 py-2 text-sm font-semibold transition-colors aria-selected:border-cy aria-selected:bg-cy aria-selected:text-ink">{l}</button>)}
     </div>
@@ -66,14 +67,17 @@ const certs = [
       {PROJECTS.map(p => (
         <article data-tags={p.tags.join(' ')} class="pcard card group relative flex flex-col overflow-hidden transition-[opacity,box-shadow] duration-300 hover:shadow-[0_20px_50px_-18px_rgba(34,211,238,.35)] will-change-transform" data-tilt>
           <span class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(34,211,238,.12), transparent 60%)" aria-hidden="true"></span>
-          <div class="relative flex items-center justify-between"><span class="chip !bg-cy/10 !text-cy">{p.tag}</span>{!p.href && <span class="text-xs text-slate-300">Client name withheld</span>}</div>
+          <div class="relative flex items-center justify-between gap-3"><span class="chip !bg-cy/10 !text-cy">{p.tag}</span>{!p.href && !p.site && <span class="text-xs text-slate-300">Client name withheld</span>}</div>
           {p.shot ? <div class="relative mt-4"><Shot name={p.shot.name} url={p.shot.url} alt={p.shot.alt} sizes="(min-width:768px) 520px, 90vw" /></div>
             : <div class="relative mt-4 grid aspect-[16/9] place-items-center rounded-xl border border-dashed border-white/15 bg-gradient-to-br from-ink-700/60 to-ink-800 text-sm text-slate-300" aria-hidden="true">Client work: screenshots withheld</div>}
           <h3 class="relative mt-5 text-xl font-semibold text-white" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
           <p class="relative mt-2 flex-1">{p.blurb}</p>
           {p.outcome && <p class="relative mt-3 text-sm font-medium text-cy">✓ {p.outcome}</p>}
           <ul class="mt-4 flex flex-wrap gap-2">{p.stack.map(s => <li class="chip">{s}</li>)}</ul>
-          {p.href && <a href={p.href} class="mt-5 font-semibold text-cy hover:underline">Read the case study →</a>}
+          {(p.href || p.site) && <div class="relative mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
+            {p.href && <a href={p.href} class="font-semibold text-cy hover:underline">Read the case study →</a>}
+            {p.site && <a href={p.site.href} target="_blank" rel="noopener" class="text-sm font-semibold text-cy hover:underline">Visit site <span class="font-normal text-slate-300">· {p.site.label}</span></a>}
+          </div>}
         </article>
       ))}
     </div>

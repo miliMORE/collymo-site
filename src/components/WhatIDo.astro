@@ -4,7 +4,7 @@ import Shapes from './Shapes.astro';
 const tabs = [
   { id: 'software', label: 'Software', title: 'Software that research teams run on',
     body: 'I design and build full-stack web products, from data model to deployment, for people who need reliable, auditable tools.',
-    points: ['VERDICT: an ethics review platform in use by a research ethics committee', 'ShelfCast: a private audiobook SaaS with a background worker queue', 'TypeScript, Next.js, Astro, Prisma, PostgreSQL, Python and Django, deployed on Railway'] },
+    points: ['VERDICT: an ethics and scientific review platform built at Internet Congress', 'ShelfCast: a private audiobook SaaS with a background worker queue', 'TypeScript, Next.js, Astro, Prisma, PostgreSQL, Python and Django, deployed on Railway'] },
   { id: 'data', label: 'Data management', title: 'Clean, defensible clinical data',
     body: 'Day to day I keep trial data complete and accurate, from form design to the final report.',
     points: ['Data collection QC, data entry oversight and query resolution', 'CRF and study-specific source-document design', 'Cleaning, standardisation and statistical reports in STATA, SQL and Excel'] },
@@ -27,12 +27,13 @@ const flow = ['Collect', 'Validate', 'Query', 'Clean', 'Report'];
         <div>
           <h3 class="wid-in text-2xl font-bold text-white sm:text-3xl">{t.title}</h3>
           <p class="wid-in mt-3 text-lg">{t.body}</p>
+          {t.id === 'software' && <p class="wid-in mt-3">I build software with <a href="https://internetcongress.org" target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">Internet Congress Limited</a>, a tech company in Kisumu, Kenya.</p>}
           <ul class="mt-6 space-y-3">{t.points.map(pt => <li class="wid-in flex gap-3"><span class="mt-1 text-cy" aria-hidden="true">✓</span><span>{pt}</span></li>)}</ul>
           {t.id === 'clinical' && <a href="/clinical-research" class="wid-in btn-line mt-7">See the clinical research journey →</a>}
-          {t.id === 'software' && <a href="/projects/verdict" class="wid-in btn-line mt-7">Read the VERDICT case study →</a>}
+          {t.id === 'software' && <a href="https://verdictethics.com" target="_blank" rel="noopener" class="wid-in btn-line mt-7">Visit verdictethics.com →</a>}
         </div>
         <div class="wid-in">
-          {t.id === 'software' && <Shot name="verdict-product" url="verdictethics.com/product" alt="VERDICT product page listing its modules" sizes="(min-width:1024px) 540px, 92vw" />}
+          {t.id === 'software' && <Shot name="verdict-home" url="verdictethics.com" alt="The VERDICT marketing site home page" sizes="(min-width:1024px) 540px, 92vw" />}
           {t.id === 'data' && (
             <div class="card">
               <p class="text-xs font-semibold uppercase tracking-[0.2em] text-cy">Data lifecycle</p>

@@ -10,6 +10,9 @@ app.disable('x-powered-by');
 app.set('trust proxy', true);
 
 app.use((req, res, next) => {
+  if (req.path === '/projects/verdict' || req.path === '/projects/verdict/') {
+    return res.redirect(301, 'https://verdictethics.com');
+  }
   const host = String(req.headers['x-forwarded-host'] || req.headers.host || '').split(',')[0].trim().toLowerCase().replace(/:\d+$/, '');
   if (host === 'www.collymo.com') return res.redirect(301, `https://collymo.com${req.originalUrl}`);
   next();
