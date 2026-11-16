@@ -1,5 +1,4 @@
 export const EMAIL = 'collinsmilimo47@gmail.com';
-export const CV_MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent('CV request via collymo.com')}&body=${encodeURIComponent('Hi Collins,\n\nCould you please share your CV?\n\nName:\nOrganisation:\n')}`;
 export const GITHUB = 'https://github.com/miliMORE';
 export const LINKEDIN = 'https://www.linkedin.com/in/collins-milimo-90a136284/';
 

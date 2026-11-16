@@ -1,9 +1,30 @@
 // Production server: gzip/brotli-negotiated compression, long cache for hashed
 // assets, a day for images/icons, and the www -> apex redirect for every path
 // (including static files, which bypass Astro middleware).
+import { existsSync, readFileSync } from 'node:fs';
 import express from 'express';
 import compression from 'compression';
 import { handler as ssr } from './dist/server/entry.mjs';
+
+// Local dev reads .env. Existing process env (Railway, or a test shell) wins.
+function loadLocalEnv() {
+  if (!existsSync('.env')) return;
+  let text = '';
+  try { text = readFileSync('.env', 'utf8'); } catch { return; }
+  for (const line of text.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const eq = trimmed.indexOf('=');
+    if (eq < 1) continue;
+    const key = trimmed.slice(0, eq).trim();
+    if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(key)) continue;
+    if (process.env[key]) continue;
+    let value = trimmed.slice(eq + 1).trim();
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) value = value.slice(1, -1);
+    process.env[key] = value;
+  }
+}
+loadLocalEnv();
 
 const app = express();
 app.disable('x-powered-by');
@@ -26,6 +47,7 @@ app.use(express.static('dist/client', {
     else res.setHeader('Cache-Control', 'public, max-age=3600');
   },
 }));
+// Leave the body unparsed so Astro can read /api/contact (form POST and fetch).
 app.use(ssr);
 
 const port = Number(process.env.PORT) || 8080;

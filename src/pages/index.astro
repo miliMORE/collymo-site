@@ -3,7 +3,8 @@ import Base from '../layouts/Base.astro';
 import Shot from '../components/Shot.astro';
 import Shapes from '../components/Shapes.astro';
 import WhatIDo from '../components/WhatIDo.astro';
-import { PROJECTS, ROLES, EMAIL, GITHUB, LINKEDIN, CV_MAILTO } from '../data';
+import ContactForms from '../components/ContactForms.astro';
+import { PROJECTS, ROLES } from '../data';
 const tabs = [['all','All'],['saas','SaaS'],['client','Client work']];
 const skills = [
   ['Clinical data management', ['Quality control','Query resolution','CRF & source-document design','Data cleaning & standardisation','Database backups','Visit schedules']],
@@ -32,7 +33,7 @@ const certs = [
           {['Software','Developer'].map(w => <><span class="w"><span>{w}</span></span>{' '}</>)}<span class="w"><span class="grad-text">&amp;</span></span>{' '}<span class="w"><span>Data</span></span>{' '}<span class="w"><span>Manager</span></span>
         </h1>
         <p class="mt-6 max-w-xl text-lg text-slate-200 reveal">Clinical data coordinator who builds the software research teams run on. Data Coordinator at Victoria Biomedical Research Institute (VIBRI), Kenya.</p>
-        <div class="mt-9 flex flex-wrap gap-3 reveal"><a href="#projects" class="btn-primary" data-magnetic>View projects</a><a href="/clinical-research" class="btn-line" data-magnetic>Clinical research journey</a><a href={CV_MAILTO} class="btn-line" data-magnetic>Request my CV</a></div>
+        <div class="mt-9 flex flex-wrap gap-3 reveal"><a href="#projects" class="btn-primary" data-magnetic>View projects</a><a href="/clinical-research" class="btn-line" data-magnetic>Clinical research journey</a><a href="/#contact-cv" class="btn-line" data-magnetic>Request my CV</a></div>
       </div>
       <div class="relative mx-auto w-[260px] sm:w-[300px] lg:w-[330px] self-end lg:justify-self-center">
         <div class="absolute inset-x-6 top-10 bottom-0" aria-hidden="true" data-blob><div class="blob"></div></div>
@@ -124,15 +125,5 @@ const certs = [
       <!-- TODO: add verification links (CITI completion-report "verify" URLs need Collo's certificate IDs; UoN short course has no public verifier). --><ul class="mt-6 space-y-4">{certs.map(([t, o, d]) => <li class="card reveal"><p class="font-semibold text-white">{t}</p><p class="text-sm text-slate-300">{o} · {d}</p></li>)}</ul></div>
   </section>
 
-  <section id="contact" class="hero-bg relative overflow-hidden scroll-mt-20 text-white"><Shapes /><div class="wrap relative py-20 text-center">
-    <p class="eyebrow !text-cy reveal">Contact</p>
-    <h2 class="mt-3 text-3xl sm:text-4xl font-bold reveal">Let's <span class="grad-text">work together</span>.</h2>
-    <p class="mx-auto mt-4 max-w-xl text-slate-300 reveal">Clinical data management, research systems or a software project: I'd be glad to hear from you.</p>
-    <div class="mt-8 flex flex-wrap justify-center gap-3 reveal">
-      <a href={`mailto:${EMAIL}`} class="btn-primary" data-magnetic>{EMAIL}</a>
-      <a href={CV_MAILTO} class="btn-line">Request my CV</a>
-      <a href={GITHUB} class="btn-line" rel="me">GitHub</a>
-      {LINKEDIN && <a href={LINKEDIN} class="btn-line" rel="me">LinkedIn</a>}
-    </div>
-  </div></section>
+  <ContactForms />
 </Base>
