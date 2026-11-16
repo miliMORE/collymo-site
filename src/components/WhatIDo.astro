@@ -20,7 +20,7 @@ const flow = ['Collect', 'Validate', 'Query', 'Clean', 'Report'];
   <div class="mt-10 reveal">
     <div role="tablist" aria-label="What I do" class="relative flex gap-1 overflow-x-auto border-b border-white/10" id="wid-tabs">
       {tabs.map((t, i) => <button role="tab" id={`wid-tab-${t.id}`} aria-controls={`wid-panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="wid-tab whitespace-nowrap px-4 py-3 text-sm font-semibold text-slate-300 transition-colors hover:text-white aria-selected:text-white sm:px-6 sm:text-base">{t.label}</button>)}
-      <span id="wid-ind" class="absolute bottom-[-1px] left-0 h-0.5 w-0 rounded-full" style="background-image:linear-gradient(90deg,#22d3ee,#a78bfa,#f472d0,#ff7a6b)" aria-hidden="true"></span>
+      <span id="wid-ind" class="absolute bottom-[-1px] left-0 h-0.5 w-0 rounded-full" style="background-image:linear-gradient(90deg,#22d3ee,#93c5fd,#f472d0,#ff7a6b)" aria-hidden="true"></span>
     </div>
     {tabs.map((t, i) => (
       <div role="tabpanel" id={`wid-panel-${t.id}`} aria-labelledby={`wid-tab-${t.id}`} tabindex="0" hidden={i !== 0} class="wid-panel mt-10 grid items-center gap-10 lg:grid-cols-2">

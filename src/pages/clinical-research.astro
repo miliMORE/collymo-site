@@ -27,7 +27,7 @@ const total = STUDY_GROUPS.reduce((n, g) => n + g.studies.length, 0);
       <span class="absolute left-0 top-0 h-full w-0.5 origin-top bg-gradient-to-b from-cy via-vio to-mg" aria-hidden="true" data-line></span>
       {ROLES.map((r, i) => (
         <li class="relative pl-8 reveal">
-          <span data-dot class:list={['absolute -left-[7px] top-1.5 h-4 w-4 rounded-full ring-4 ring-ink', i === 0 ? 'bg-cy' : 'bg-[#a78bfa]']}></span>
+          <span data-dot class:list={['absolute -left-[7px] top-1.5 h-4 w-4 rounded-full ring-4 ring-ink', i === 0 ? 'bg-cy' : 'bg-[#93c5fd]']}></span>
           <p class="text-sm font-semibold text-cy">{r.when}</p>
           <h3 class="mt-1 text-xl font-semibold text-white">{r.title}</h3>
           <p class="text-slate-300">{r.org}</p>
