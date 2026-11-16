@@ -1,7 +1,7 @@
 ---
 // Browser-framed screenshot. AVIF + WebP, responsive, lazy by default.
-interface Props { name: string; alt: string; url: string; eager?: boolean; sizes?: string }
-const { name, alt, url, eager = false, sizes = '(min-width:1024px) 560px, 92vw' } = Astro.props;
+interface Props { name: string; alt: string; url: string; eager?: boolean; sizes?: string; caption?: string }
+const { name, alt, url, eager = false, sizes = '(min-width:1024px) 560px, 92vw', caption } = Astro.props;
 const set = (ext: string) => `/img/shots/${name}-640.${ext} 640w, /img/shots/${name}-1280.${ext} 1280w`;
 ---
 <figure class="overflow-hidden rounded-xl border border-white/10 bg-ink-800 shadow-[0_20px_50px_-20px_rgba(34,211,238,.25)]">
@@ -14,4 +14,5 @@ const set = (ext: string) => `/img/shots/${name}-640.${ext} 640w, /img/shots/${n
     <source type="image/webp" srcset={set('webp')} sizes={sizes} />
     <img src={`/img/shots/${name}-640.webp`} width="1280" height="720" alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" class="block h-auto w-full" />
   </picture>
+  {caption && <figcaption class="border-t border-white/10 px-3 py-2 text-xs leading-snug text-slate-300">{caption}</figcaption>}
 </figure>
