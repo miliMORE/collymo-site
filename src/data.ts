@@ -48,6 +48,8 @@ export type Project = {
   href?: string;
   /** Public marketing page. Shown as a small "Visit site" link. */
   site?: { href: string; label: string };
+  /** Public repository. Shown as a small link, same style as `site`. */
+  repo?: { href: string; label: string };
   shot?: { name: string; url: string; alt: string };
 };
 
@@ -56,4 +58,7 @@ export const PROJECTS: Project[] = [
   { slug: 'shelfcast', name: 'ShelfCast', tag: 'SaaS', tags: ['saas'], blurb: 'Turns ebooks you already own into private, downloadable audiobooks with text-to-speech.', shot: { name: 'shelfcast-home', url: 'ShelfCast (local demo)', alt: 'The ShelfCast landing page' }, stack: ['Next.js','TypeScript','Prisma','PostgreSQL','Docker'], href: '/projects/shelfcast' },
   { slug: 'salary-survey', name: 'Public-service salary survey platform', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: county public-service salary and remuneration surveys with questionnaires, catalogues, document workflows, reports and workbook exports.', stack: ['Python','Django','openpyxl'] },
   { slug: 'fee-ledger', name: 'School fee & M-Pesa ledger', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: student fee structures, payments, a ledger, bank and M-Pesa import batches, expenses and budgets, with role-based staff access.', stack: ['Python','Django'] },
+  { slug: 'lreg', name: 'LReg', tag: 'SaaS', tags: ['saas'], blurb: 'A Flask + SQLite registry for the LCAF programme: learners, facilitators, schedules, attendance, schedule export and audit-friendly utilities.', stack: ['Flask','SQLite'], repo: { href: 'https://github.com/miliMORE/LReg', label: 'GitHub' } },
+  { slug: 'daybook', name: 'DayBook', tag: 'SaaS', tags: ['saas'], blurb: 'A private-by-default log for habits, books, activities and routines, with follow requests and no comments or likes.', stack: ['Next.js','Prisma','PostgreSQL'], site: { href: 'https://daybook.collymo.com', label: 'daybook.collymo.com' } },
+  { slug: 'patient-support', name: 'Patient support platform for a health non-profit', tag: 'Client work', tags: ['client'], blurb: 'Built for a client: visit tracking for a patient community.', stack: ['Django','PostgreSQL','Redis'] },
 ];

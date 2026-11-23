@@ -68,16 +68,17 @@ const certs = [
       {PROJECTS.map(p => (
         <article data-tags={p.tags.join(' ')} class="pcard card group relative flex flex-col overflow-hidden transition-[opacity,box-shadow] duration-300 hover:shadow-[0_20px_50px_-18px_rgba(34,211,238,.35)] will-change-transform" data-tilt>
           <span class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(34,211,238,.12), transparent 60%)" aria-hidden="true"></span>
-          <div class="relative flex items-center justify-between gap-3"><span class="chip !bg-cy/10 !text-cy">{p.tag}</span>{!p.href && !p.site && <span class="text-xs text-slate-300">Client name withheld</span>}</div>
+          <div class="relative flex items-center justify-between gap-3"><span class="chip !bg-cy/10 !text-cy">{p.tag}</span>{!p.href && !p.site && !p.repo && <span class="text-xs text-slate-300">Client name withheld</span>}</div>
           {p.shot ? <div class="relative mt-4"><Shot name={p.shot.name} url={p.shot.url} alt={p.shot.alt} sizes="(min-width:768px) 520px, 90vw" /></div>
-            : <div class="relative mt-4 grid aspect-[16/9] place-items-center rounded-xl border border-dashed border-white/15 bg-gradient-to-br from-ink-700/60 to-ink-800 text-sm text-slate-300" aria-hidden="true">Client work: screenshots withheld</div>}
+            : <div class="relative mt-4 grid aspect-[16/9] place-items-center rounded-xl border border-dashed border-white/15 bg-gradient-to-br from-ink-700/60 to-ink-800 text-sm text-slate-300" aria-hidden="true">{p.tags.includes('client') ? 'Client work: screenshots withheld' : 'Screenshots withheld'}</div>}
           <h3 class="relative mt-5 text-xl font-semibold text-white" transition:name={p.href ? `title-${p.slug}` : undefined}>{p.name}</h3>
           <p class="relative mt-2 flex-1">{p.blurb}</p>
           {p.outcome && <p class="relative mt-3 text-sm font-medium text-cy">✓ {p.outcome}</p>}
           <ul class="mt-4 flex flex-wrap gap-2">{p.stack.map(s => <li class="chip">{s}</li>)}</ul>
-          {(p.href || p.site) && <div class="relative mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
+          {(p.href || p.site || p.repo) && <div class="relative mt-5 flex flex-wrap items-center gap-x-4 gap-y-1">
             {p.href && <a href={p.href} class="font-semibold text-cy hover:underline">Read the case study →</a>}
             {p.site && <a href={p.site.href} target="_blank" rel="noopener" class="text-sm font-semibold text-cy hover:underline">Visit site <span class="font-normal text-slate-300">· {p.site.label}</span></a>}
+            {p.repo && <a href={p.repo.href} target="_blank" rel="noopener" class="text-sm font-semibold text-cy hover:underline">{p.repo.label}</a>}
           </div>}
         </article>
       ))}
