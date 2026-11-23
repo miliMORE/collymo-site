@@ -30,7 +30,7 @@ const total = STUDY_GROUPS.reduce((n, g) => n + g.studies.length, 0);
           <span data-dot class:list={['absolute -left-[7px] top-1.5 h-4 w-4 rounded-full ring-4 ring-ink', i === 0 ? 'bg-cy' : 'bg-[#93c5fd]']}></span>
           <p class="text-sm font-semibold text-cy">{r.when}</p>
           <h3 class="mt-1 text-xl font-semibold text-white">{r.title}</h3>
-          <p class="text-slate-300">{r.org}</p>
+          <p class="text-slate-300">{r.orgHref ? <a href={r.orgHref} target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">{r.org}</a> : r.org}</p>
           <ul class="mt-3 list-disc space-y-1 pl-5">{r.points.map(p => <li>{p}</li>)}</ul>
         </li>
       ))}

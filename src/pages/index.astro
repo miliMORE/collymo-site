@@ -110,8 +110,8 @@ const certs = [
 
   <section class="wrap py-20">
     <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="eyebrow reveal">Experience</p><h2 class="h2 mt-2 reveal">Where I've <span class="grad-text">worked</span></h2></div><a href="/clinical-research" class="font-semibold text-cy hover:underline reveal">Full clinical research journey →</a></div>
-    <ol class="mt-10 grid gap-6 md:grid-cols-3">
-      {ROLES.map(r => <li class="card reveal"><p class="text-sm font-semibold text-cy">{r.when}</p><h3 class="mt-2 text-lg font-semibold text-white">{r.title}</h3><p class="text-sm text-slate-300">{r.org}</p><p class="mt-3 text-sm">{r.points[0]}.</p></li>)}
+    <ol class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {ROLES.map(r => <li class="card reveal"><p class="text-sm font-semibold text-cy">{r.when}</p><h3 class="mt-2 text-lg font-semibold text-white">{r.title}</h3><p class="text-sm text-slate-300">{r.orgHref ? <a href={r.orgHref} target="_blank" rel="noopener" class="font-semibold text-cy hover:underline">{r.org}</a> : r.org}</p><p class="mt-3 text-sm">{r.points[0]}.</p></li>)}
     </ol>
   </section>
 

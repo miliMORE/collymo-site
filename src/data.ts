@@ -2,7 +2,17 @@ export const EMAIL = 'collinsmilimo47@gmail.com';
 export const GITHUB = 'https://github.com/miliMORE';
 export const LINKEDIN = 'https://www.linkedin.com/in/collins-milimo-90a136284/';
 
-export const ROLES = [
+export type Role = {
+  when: string;
+  title: string;
+  org: string;
+  orgHref?: string;
+  points: string[];
+};
+
+export const ROLES: Role[] = [
+  { when: 'Present', title: 'Developer', org: 'Internet Congress', orgHref: 'https://internetcongress.org',
+    points: ['Builds web platforms for clients, including VERDICT, a research ethics review platform (verdictethics.com)'] },
   { when: 'Feb 2025 – present', title: 'Data Coordinator', org: 'Victoria Biomedical Research Institute (VIBRI)',
     points: ['Oversees data collection quality control, data entry, query resolution and statistical analysis, with performance reports','Generates statistical follow-up and monitoring reports','Designs and maintains data collection forms and study-specific source documents','Manages database backups and study filing systems','Documents data cleaning, standardisation and analysis procedures','Builds participant visit schedules and planners','Site visits to troubleshoot data issues'] },
   { when: 'Feb 2024 – Feb 2025', title: 'Regulatory Officer', org: 'Butere Clinical Research Centre (BCRC)',
